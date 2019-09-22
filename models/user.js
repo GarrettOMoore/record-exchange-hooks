@@ -31,10 +31,6 @@ const userSchema = new Schema ({
   	state: {
     	type: String
   },
-		zipcode: {
-    	type: String,
-    	required: [false]
-	},
 		image: {
     	type: String
   }
@@ -50,7 +46,6 @@ userSchema.set('toObject', {
 			name: ret.name,
 			city: ret.city,
       state: ret.state,
-      zipcode: ret.zipcode,
       image: ret.image
 		}
 		return returnJson;

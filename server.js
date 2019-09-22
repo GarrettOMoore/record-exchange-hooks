@@ -10,8 +10,7 @@ const app = express();
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(helmet());
-app.use(express.static(__dirname + '/client/build'));
-app.use('/auth', require('./routes/auth'));
+// app.use(express.static(__dirname + '/client/build'));
 
 
 //Rate Limiting
@@ -43,7 +42,7 @@ db.on('error', (error) => {
 app.use('/auth/login', loginLimiter);
 app.use('/auth/signup', signupLimiter);
 
-
+app.use('/auth', require('./routes/auth'));
 app.use('/locked',
   expressJWT({secret: process.env.JWT_SECRET})
 		.unless({method: 'POST'}), 

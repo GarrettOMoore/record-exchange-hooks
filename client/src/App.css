@@ -28,3 +28,12 @@
 .logo {
   margin: 5rem;
 }
+
+.sign-up-form * {
+  display: block;
+  margin: 1rem;
+}
+
+button {
+  text-align: center;
+}

@@ -4,7 +4,12 @@ const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 
 // Route for signup
+router.post('/', (req, res) => {
+	console.log(req.body.name);
+})
+
 router.post('/signup', (req, res) => {
+	console.log("HIT USER SIGN UP ROUTE")
 	// See if the email is already in the database.
 	User.findOne({email: req.body.email}, (err, user) => {
 		// If yes - Return an error.
