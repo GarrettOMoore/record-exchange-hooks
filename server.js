@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const expressJWT = require('express-jwt');
 const RateLimit = require('express-rate-limit');
 const helmet = require('helmet');
+const router = express.Router();
 
 const app = express();
 
@@ -28,7 +29,10 @@ const signupLimiter = new RateLimit ({
 	message: 'Maximum accounts created. Please try again later.'
 })
 
-mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true});
+mongoose.connect(process.env.MONGODB_URI, { 
+	useUnifiedTopology: true,
+	useNewUrlParser: true
+ });
 const db = mongoose.connection;
 
 db.once('open', () => {
@@ -42,15 +46,20 @@ db.on('error', (error) => {
 app.use('/auth/login', loginLimiter);
 app.use('/auth/signup', signupLimiter);
 
-app.use('/auth', require('./routes/auth'));
+app.use('/auth', require('./routes/auth.js'));
+
 app.use('/locked',
   expressJWT({secret: process.env.JWT_SECRET})
 		.unless({method: 'POST'}), 
 		  require('./routes/locked'));
 
-// app.get('*', function(req, res) {
-// 	res.sendFile(__dirname + '/client/build/index.html');
-// });
+app.get('*', function(req, res) {
+	res.send("TEST");
+});
+
+router.post('/', (req, res) => {
+	console.log(req.body.name);
+});
 
 app.listen(process.env.PORT, () => {
 	console.log(`✨🔮✨ You are spinning on Port ${process.env.PORT} ✨🔮✨`)

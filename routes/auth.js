@@ -20,7 +20,9 @@ router.post('/signup', (req, res) => {
 			let user = new User ({
 				name: req.body.name,
 				email: req.body.email,
-				password: req.body.password
+				password: req.body.password,
+				city: req.body.city,
+				state: req.body.state
 			})
 			 user.save( (err, user) => {
 				if (err) {

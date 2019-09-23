@@ -33,29 +33,29 @@ const SignUp = () => {
 
 	function handleSubmit(e)  {
 		e.preventDefault();
-		axios.post('localhost:3000/auth/', {
+		axios.post('/auth/', {
 			name: name
 		}).then( res => {
 			console.log(res.data)
 		})
-		// axios.post('/auth/signup', {
-		// 		name: name,
-		// 		email: email,
-		// 		password: password,
-		// 		city: city,
-		// 		state: state
-		// }).then( res => {
-		// 	if (res.data.type === 'error') {
-		// 		console.log("ERROR");
-		// 	} else {
-		// 			localStorage.setItem('mernToken', res.data.token)
-		// 			this.props.liftToken(res.data);
-		// 			this.props.history.push('/')
-		// 	}
-		// }).catch( err => {
-		// 		// This block catches the rate limiters.
-		// 	setMessage('Maximum accounts exceeded. Please try again later.')
-		// })
+		axios.post('/auth/signup', {
+				name: name,
+				email: email,
+				password: password,
+				city: city,
+				state: state
+		}).then( res => {
+			if (res.data.type === 'error') {
+				console.log("ERROR");
+			} else {
+					localStorage.setItem('mernToken', res.data.token)
+					this.props.liftToken(res.data);
+					this.props.history.push('/')
+			}
+		}).catch( err => {
+				// This block catches the rate limiters.
+			setMessage('Maximum accounts exceeded. Please try again later.')
+		})
 	}
 
 	return (

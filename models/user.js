@@ -34,7 +34,7 @@ const userSchema = new Schema ({
 		image: {
     	type: String
   }
-})
+});
 
 // Removes password before showing data as a JSON object
 
