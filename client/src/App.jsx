@@ -5,6 +5,8 @@ import Header from './components/Header'
 import Landing from './pages/Landing';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
+import Explore from './pages/Explore'
+import Collection from './pages/Collection'
 import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
 
 
@@ -72,11 +74,13 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Header logout={logout}/>
+        <Header logout={logout} user={user} />
         {user !== '' ? display = `Hello, ${user.name}!` : display = 'Please Sign In' }
         <Route exact path ='/' render={()=><Landing />}/>
         <Route exact path ='/signup' render={()=><SignUp liftToken={liftTokenToState} />}/>
         <Route exaxt path ='/login' render={()=><Login liftToken={liftTokenToState}/>}/>
+        <Route exaxt path ='/explore' render={()=><Explore liftToken={liftTokenToState}/>}/>
+        <Route exaxt path ='/collection' render={()=><Collection liftToken={liftTokenToState}/>}/>
       </Router>
     </div>
   );
