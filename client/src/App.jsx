@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import './App.css';
 import axios from 'axios';
+import Header from './components/Header'
+import Landing from './pages/Landing';
+import Login from './pages/Login';
 import SignUp from './pages/SignUp';
-import Logo from './whitelogo.png'
+import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
 
 
 function App() {
@@ -10,6 +13,7 @@ function App() {
   const [user, setUser] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [lockedResult, setLockedResult] = useState('');
+  let display;
 
   function checkForLocalToken () {
     // Look in localStorage for the token
@@ -67,10 +71,13 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={Logo} className="logo" width={'10%'} height={'10%'} />
-        <SignUp liftToken={liftTokenToState} />
-      </header>
+      <Router>
+        <Header logout={logout}/>
+        {user !== '' ? display = `Hello, ${user.name}!` : display = 'Please Sign In' }
+        <Route exact path ='/' render={()=><Landing />}/>
+        <Route exact path ='/signup' render={()=><SignUp liftToken={liftTokenToState} />}/>
+        <Route exaxt path ='/login' render={()=><Login liftToken={liftTokenToState}/>}/>
+      </Router>
     </div>
   );
 }

@@ -42,6 +42,7 @@ router.post('/signup', (req, res) => {
 
 // Route for login
 router.post('/login', (req, res) => {
+	console.log("LOG IN ROUTE")
 	// Find user in database.
 	User.findOne({
 		email: req.body.email

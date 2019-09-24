@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import SignUpForm from '../components/SignUpForm';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
-const SignUp = () => {
+const SignUp = (props) => {
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -50,7 +50,7 @@ const SignUp = () => {
 			} else {
 					localStorage.setItem('mernToken', res.data.token)
 					this.props.liftToken(res.data);
-					this.props.history.push('/')
+					props.history.push("/");
 			}
 		}).catch( err => {
 				// This block catches the rate limiters.
@@ -59,18 +59,18 @@ const SignUp = () => {
 	}
 
 	return (
-		<div>
+		<div className='main'>
 			<h3>SIGN UP</h3>
 			<div className="sign-up-form">
 				<input type="text" name="name" placeholder="Full Name" value={name} onChange={handleNameChange}></input>
-				<input type="text" name="email" placeholder="Email" value={email} onChange={handleEmailChange}></input>
+				<input type="email" name="email" placeholder="Email" value={email} onChange={handleEmailChange}></input>
 				<input type="password" name="password" placeholder="Password" value={password} onChange={handlePasswordChange}></input>
 				<input type="text" name="city" placeholder="City" value={city} onChange={handleCityChange}></input>
 				<input type="text" name="state" placeholder="State" value={state} onChange={handleStateChange}></input>
-				<button onClick={handleSubmit}>TEST SUBMIT</button>
+				<button onClick={handleSubmit}>Send</button>
 			</div>
 		</div>
 	)
 }
 
-export default SignUp
+export default withRouter(SignUp);
