@@ -63,3 +63,17 @@ button {
   padding: 0.6rem;
   border: 2px solid black;
 }
+
+.show-results {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.results-box {
+  width: 12rem;
+  height: 12rem;
+  margin: 1rem;
+  padding: 0.6rem;
+  border: 2px solid black;
+}

@@ -5,7 +5,7 @@ const axios = require('axios');
 // Route for signup
 router.post('/', (req, res) => {
 	var search = req.body.query;
-	var url = 'https://api.discogs.com/database/search?q='+ encodeURI(search) + '&key=' + process.env.CONSUMER_KEY + '&secret=' + process.env.CONSUMER_SECRET
+	var url = 'https://api.discogs.com/database/search?q='+ encodeURI(search) + '&key=' + 'iTRElvXmFbRQpLPRNyHY' + '&secret=' + 'TQWdIVlQOVjgQLmMIBSxzvdXsyaPEaEP'
 	axios.get(url).then((result) => {
 		res.json({
 			data: result.data

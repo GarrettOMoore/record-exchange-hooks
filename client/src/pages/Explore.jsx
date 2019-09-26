@@ -17,7 +17,6 @@ const Explore = () => {
     axios.post('/explore/', {
 			query: query
     }).then( res => {
-			console.log(res.data)
         if (res.data.type === 'error') {
           setMessage(res.data.message);
         } else {
@@ -26,12 +25,29 @@ const Explore = () => {
     })
 	};
 
+	let discogsData;
+	
+	if (apiData.data) {
+		console.log(apiData.data.results)
+		discogsData = apiData.data.results.map((item) => {
+			return (
+				<div className='results-box'>
+					<img src={item.cover_image}/>
+				</div>
+			)
+		})
+	}
+
+	
+
 	return (
 		<div className="main">
 		<h3>Search By Artist or Album Title:</h3>
 			<input onChange={handleInputChange}type="text" placeholder="Search"></input>
 			<button onClick={handleQuerySubmit}>Go</button>
-			<p>{query}</p>
+			<div className='show-results'>
+				{discogsData}
+			</div>
 		</div>
 	)
 }
