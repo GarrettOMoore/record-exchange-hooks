@@ -1,11 +1,13 @@
 import React, {useState} from 'react'
 import axios from 'axios'
+import { Form, Button } from 'react-bootstrap'
+import { withRouter } from 'react-router-dom'
 
 const Login = (props) => {
 
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const [message, setMessage] = useState('');
+  const [message, setMessage] = useState('');
 
 	function handleEmailChange(e) {
     setEmail(e.target.value);
@@ -26,27 +28,37 @@ const Login = (props) => {
           if (res.data.type === 'error') {
             setMessage(res.data.message);
           } else {
+              console.log("HISTORY: ", props.history)
               localStorage.setItem('mernToken', res.data.token)
               props.liftToken(res.data)
               props.getItems()
-              props.history.push('/mypantry')
+              props.history.push('/')
           }
       }).catch( err => {
           setMessage(err)
       })
   }
 	return (
-		<div className='main'>
-        <h3>Log into your account:</h3>
-				<div className="sign-up-form">
-					<form onSubmit={handleSubmit}>
-						<input type="email" name="email" placeholder="Email" value={email} onChange={handleEmailChange}></input>
-						<input type="password" name="password" placeholder="Password" value={password} onChange={handlePasswordChange}></input>
-						<button>Send</button>
-					</form>
-			</div>
-		</div>
+		  <div className='main'>
+          <h3>Log into your account:</h3>
+		  		<div className="sign-up-form">
+            <Form onSubmit={handleSubmit}>
+              <Form.Group controlId="formBasicEmail">
+                {/* <Form.Label>Email address</Form.Label> */}
+                <Form.Control onChange={handleEmailChange} type="email" placeholder="Email" />
+              </Form.Group>
+
+              <Form.Group controlId="formBasicPassword">
+                {/* <Form.Label>Password</Form.Label> */}
+                <Form.Control onChange={handlePasswordChange} type="password" placeholder="Password" />
+              </Form.Group>
+              <Button variant="primary" type="submit">
+                Send!
+              </Button>
+            </Form>
+		  	  </div>
+		  </div>
 	)
 }
 
-export default Login 
+export default withRouter(Login) 

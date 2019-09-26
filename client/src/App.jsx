@@ -7,7 +7,7 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Explore from './pages/Explore'
 import Collection from './pages/Collection'
-import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Route, withRouter} from 'react-router-dom'
 
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
       // No token.
       localStorage.removeItem('mernToken')
       setToken('');
-      setUser(null)
+      setUser(null);
     } else {
       // Found token - Send it to be verified.
       axios.post('/auth/me/from/token', {token} )
@@ -75,12 +75,14 @@ function App() {
     <div className="App">
       <Router>
         <Header logout={logout} user={user} />
-        {user !== '' ? display = `Hello, ${user.name}!` : display = 'Please Sign In' }
+        <div>
+          {user.name ? display = `Hello, ${user.name}!` : display = '' }
+        </div>
         <Route exact path ='/' render={()=><Landing />}/>
         <Route exact path ='/signup' render={()=><SignUp liftToken={liftTokenToState} />}/>
-        <Route exaxt path ='/login' render={()=><Login liftToken={liftTokenToState}/>}/>
-        <Route exaxt path ='/explore' render={()=><Explore liftToken={liftTokenToState}/>}/>
-        <Route exaxt path ='/collection' render={()=><Collection liftToken={liftTokenToState}/>}/>
+        <Route exact path ='/login' render={()=><Login liftToken={liftTokenToState}/>}/>
+        <Route exact path ='/explore' render={()=><Explore user={user} liftToken={liftTokenToState}/>}/>
+        <Route exact path ='/collection' render={()=><Collection user={user} liftToken={liftTokenToState}/>}/>
       </Router>
     </div>
   );

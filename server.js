@@ -17,7 +17,7 @@ app.use(helmet());
 //Rate Limiting
 const loginLimiter = new RateLimit ({
 	windowMs: 5*60*1000, // Five minutes.
-	max: 3,
+	max: 30,
 	delayMs: 0, // Disables
 	message: 'Maximum Login Attempts Exceeded.'
 })

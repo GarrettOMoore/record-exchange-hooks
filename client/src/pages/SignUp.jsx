@@ -50,7 +50,7 @@ const SignUp = (props) => {
 			} else {
 					localStorage.setItem('mernToken', res.data.token)
 					this.props.liftToken(res.data);
-					props.history.push("/");
+					props.history.push("/collection");
 			}
 		}).catch( err => {
 				// This block catches the rate limiters.
