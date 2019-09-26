@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
 import Header from './components/Header'
 import Landing from './pages/Landing';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
+import Community from './pages/Community'
 import Explore from './pages/Explore'
 import Collection from './pages/Collection'
 import {BrowserRouter as Router, Route, withRouter} from 'react-router-dom'
@@ -70,18 +71,22 @@ function App() {
     })
   }
 
+  useEffect(()=> {
+    checkForLocalToken();
+  }, [])
 
   return (
     <div className="App">
       <Router>
         <Header logout={logout} user={user} />
-        <div>
+        {/* <div>
           {user.name ? display = `Hello, ${user.name}!` : display = '' }
-        </div>
+        </div> */}
         <Route exact path ='/' render={()=><Landing />}/>
         <Route exact path ='/signup' render={()=><SignUp liftToken={liftTokenToState} />}/>
         <Route exact path ='/login' render={()=><Login liftToken={liftTokenToState}/>}/>
-        <Route exact path ='/explore' render={()=><Explore user={user} liftToken={liftTokenToState}/>}/>
+        <Route exact path ='/explore' render={()=><Explore />}/>
+        <Route exact path ='/community' render={(props)=><Community user={user} liftToken={liftTokenToState}{...props}/>}/>
         <Route exact path ='/collection' render={()=><Collection user={user} liftToken={liftTokenToState}/>}/>
       </Router>
     </div>

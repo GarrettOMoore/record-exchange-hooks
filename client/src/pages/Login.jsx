@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Form, Button } from 'react-bootstrap'
 import { withRouter } from 'react-router-dom'
 
-const Login = (props) => {
+const Login = (props, history) => {
 
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -32,10 +32,11 @@ const Login = (props) => {
               localStorage.setItem('mernToken', res.data.token)
               props.liftToken(res.data)
               props.getItems()
-              props.history.push('/')
           }
       }).catch( err => {
           setMessage(err)
+      }).finally(() => {
+        props.history.push('/collection');
       })
   }
 	return (
