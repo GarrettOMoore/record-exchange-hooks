@@ -29,10 +29,10 @@ const Explore = () => {
 	
 	if (apiData.data) {
 		console.log(apiData.data.results)
-		discogsData = apiData.data.results.map((item) => {
+		discogsData = apiData.data.results.map((item, i) => {
 			return (
-				<div className='results-box'>
-					<img src={item.cover_image}/>
+				<div className='results-box' key={i}>
+					<img className='result-img' src={item.cover_image} alt={item.title}/>
 				</div>
 			)
 		})
