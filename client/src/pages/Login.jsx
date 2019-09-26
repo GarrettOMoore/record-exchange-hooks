@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Form, Button } from 'react-bootstrap'
 import { withRouter } from 'react-router-dom'
 
-const Login = (props, history) => {
+const Login = (props) => {
 
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -28,7 +28,6 @@ const Login = (props, history) => {
           if (res.data.type === 'error') {
             setMessage(res.data.message);
           } else {
-              console.log("HISTORY: ", props.history)
               localStorage.setItem('mernToken', res.data.token)
               props.liftToken(res.data)
               props.getItems()
@@ -39,9 +38,19 @@ const Login = (props, history) => {
         props.history.push('/collection');
       })
   }
+
+  let showMessage;
+
+  if (message) {
+    showMessage = message;
+  } else {
+    showMessage = '';
+  };
+
 	return (
 		  <div className='main'>
           <h3>Log into your account:</h3>
+          {showMessage}
 		  		<div className="sign-up-form">
             <Form onSubmit={handleSubmit}>
               <Form.Group controlId="formBasicEmail">

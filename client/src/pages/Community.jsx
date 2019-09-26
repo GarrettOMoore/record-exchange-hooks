@@ -19,7 +19,7 @@ const Community = (props) => {
 				<div className='user-box' key={i}>
 					<p>{user.login.username}</p>
 					<p>{`Age: ${user.dob.age}`}</p>
-					<img src={user.picture.medium} />
+					<img src={user.picture.medium} alt={user.login.username}/>
 					<p>{`Collection: ${Math.floor(Math.random() * 3000)}`}</p>
 				</div>
 			)

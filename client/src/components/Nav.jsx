@@ -5,7 +5,7 @@ const Nav = (props) => {
 	let user = props.user;
 	let navShow;
 
-	if(user.name) {
+	if (user) {
 		navShow = (
 			<nav>
 				<Link className='nav-text'to='/'>About</Link> | {' '}
@@ -16,7 +16,7 @@ const Nav = (props) => {
 			</nav>
 		);
 	} else {
-		navShow =(
+		 navShow =(
 			<nav>
 				<Link className='nav-text'to='/'>About</Link> | {' '}
         <Link className='nav-text'to='/login'>Login</Link> | {' '}

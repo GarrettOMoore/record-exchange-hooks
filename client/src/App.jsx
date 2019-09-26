@@ -8,7 +8,7 @@ import SignUp from './pages/SignUp';
 import Community from './pages/Community'
 import Explore from './pages/Explore'
 import Collection from './pages/Collection'
-import {BrowserRouter as Router, Route, withRouter} from 'react-router-dom'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 
 function App() {
@@ -16,7 +16,6 @@ function App() {
   const [user, setUser] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [lockedResult, setLockedResult] = useState('');
-  let display;
 
   function checkForLocalToken () {
     // Look in localStorage for the token
@@ -71,17 +70,21 @@ function App() {
     })
   }
 
+
+
   useEffect(()=> {
     checkForLocalToken();
   }, [])
+
+  let display;
 
   return (
     <div className="App">
       <Router>
         <Header logout={logout} user={user} />
-        {/* <div>
-          {user.name ? display = `Hello, ${user.name}!` : display = '' }
-        </div> */}
+        <button onClick={handleClick}>TEST</button>
+        {lockedResult ? display = lockedResult : display = errorMessage}
+        {display}
         <Route exact path ='/' render={()=><Landing />}/>
         <Route exact path ='/signup' render={()=><SignUp liftToken={liftTokenToState} />}/>
         <Route exact path ='/login' render={()=><Login liftToken={liftTokenToState}/>}/>

@@ -61,6 +61,7 @@ const SignUp = (props) => {
 	return (
 		<div className='main'>
 			<h3>SIGN UP</h3>
+			{errorMessage !== '' ? errorMessage : ''}
 			<div className="sign-up-form">
 				<input type="text" name="name" placeholder="Full Name" value={name} onChange={handleNameChange}></input>
 				<input type="email" name="email" placeholder="Email" value={email} onChange={handleEmailChange}></input>
