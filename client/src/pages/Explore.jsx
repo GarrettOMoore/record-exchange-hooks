@@ -31,7 +31,7 @@ const Explore = (props) => {
 			id: props.user._id,
 			title: album.title,
 			artist: album.artist,
-			image: album.image,
+			image: album.cover_image,
 			year: album.year,
 			label: album.label[0],
 			genre: album.genre[0]
