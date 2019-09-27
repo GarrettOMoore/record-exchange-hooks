@@ -82,13 +82,12 @@ function App() {
     <div className="App">
       <Router>
         <Header logout={logout} user={user} />
-        <button onClick={handleClick}>TEST</button>
-        {lockedResult ? display = lockedResult : display = errorMessage}
-        {display}
+        {/* <button onClick={handleClick}>TEST</button>
+        {lockedResult} */}
         <Route exact path ='/' render={()=><Landing />}/>
         <Route exact path ='/signup' render={()=><SignUp liftToken={liftTokenToState} />}/>
         <Route exact path ='/login' render={()=><Login liftToken={liftTokenToState}/>}/>
-        <Route exact path ='/explore' render={()=><Explore />}/>
+        <Route exact path ='/explore' render={()=><Explore user={user}/>}/>
         <Route exact path ='/community' render={(props)=><Community user={user} liftToken={liftTokenToState}{...props}/>}/>
         <Route exact path ='/collection' render={()=><Collection user={user} liftToken={liftTokenToState}/>}/>
       </Router>

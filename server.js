@@ -48,6 +48,7 @@ app.use('/auth/signup', signupLimiter);
 
 app.use('/auth', require('./routes/auth.js'));
 app.use('/explore', require('./routes/explore.js'));
+app.use('/collection', require('./routes/collection.js'));
 
 app.use('/locked',
   expressJWT({secret: process.env.JWT_SECRET})
