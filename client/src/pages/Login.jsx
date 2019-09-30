@@ -30,7 +30,7 @@ const Login = (props) => {
           } else {
               localStorage.setItem('mernToken', res.data.token)
               props.liftToken(res.data)
-              props.getItems()
+              // props.getItems()
           }
       }).catch( err => {
           setMessage(err)

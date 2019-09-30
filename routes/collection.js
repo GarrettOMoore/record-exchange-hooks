@@ -39,7 +39,10 @@ router.get('/:id', (req, res) => {
 	});
 
 router.get('/delete/:id', (req, res) => {
-	Collection.deleteOne({_id: req.params.id}, (err) => {})
+	Collection.deleteOne({_id: req.params.id}, (err) => {
+		console.log(err)
+		res.json(err)
+	})
 })
 
 module.exports = router;

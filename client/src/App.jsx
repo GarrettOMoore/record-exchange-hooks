@@ -17,6 +17,7 @@ function App() {
   const [errorMessage, setErrorMessage] = useState('');
   const [lockedResult, setLockedResult] = useState('');
 
+
   function checkForLocalToken () {
     // Look in localStorage for the token
     let token = localStorage.getItem('mernToken')

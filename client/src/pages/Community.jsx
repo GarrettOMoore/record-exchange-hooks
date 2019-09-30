@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import Button from 'react-bootstrap/Button'
 
 const Community = (props) => {
 	const [users, setUsers] = useState('');
@@ -21,6 +22,8 @@ const Community = (props) => {
 					<p>{`Age: ${user.dob.age}`}</p>
 					<img src={user.picture.medium} alt={user.login.username}/>
 					<p>{`Collection: ${Math.floor(Math.random() * 3000)}`}</p>
+					<Button className='user-btn' variant="dark">View Profile</Button>
+					<Button className='user-btn' variant="dark">Send Message</Button>
 				</div>
 			)
 		})

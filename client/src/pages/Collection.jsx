@@ -7,16 +7,27 @@ const Collection = (props) => {
 	const [collection, setCollection] = useState([]);
 
 	useEffect(() => {
-		console.log(props.user._id)
 			axios.get(`/collection/${props.user._id}`).then( res => {
 				setCollection(res.data)
 			})
 	}, [props.user]);
 
+	const deleteAlbum = (id) => {
+      axios.get(`/collection/delete/${id}`).then( res => {
+				axios.get(`/collection/${props.user._id}`).then( res => {
+					setCollection(res.data)
+				})
+			})
+	};
+
+	const addToTrade = (id) => {
+		console.log("trading: ", id);
+	}
+
 	let showCollection = collection.map((item, i) => {
 		return (
-			<>
-				<Accordion key={i}>
+			<div key={i}>
+				<Accordion>
 					<Card className='release-card' style={{ width: '18rem' }}>
   					<Card.Img variant="top" src={item.image} alt={item.title} />
   					<Card.Body>
@@ -32,10 +43,11 @@ const Collection = (props) => {
   					  	</Card.Text>
    					 	</Accordion.Collapse> 
   					</Card.Body>
-  					  <Button variant="dark" className='delete-btn'>Remove From Collection</Button>
+							<Button onClick={()=> addToTrade(item._id)} variant="dark" className='delete-btn'>Add To Trade</Button>
+  					  <Button onClick={()=> deleteAlbum(item._id)} variant="dark" className='delete-btn'>Remove From Collection</Button>
 					</Card>
 				</Accordion>
-			</>
+			</div>
 		)
 	})
 
