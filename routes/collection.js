@@ -32,7 +32,6 @@ router.get('/:id', (req, res) => {
 			if (!err) {
 				res.status(200).json(items)
 			} else {
-				console.log("UH OHHH")
 				res.status(500).json({err})
 			}
 		});

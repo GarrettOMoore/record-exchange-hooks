@@ -4,9 +4,6 @@ const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 
 // Route for signup
-router.post('/', (req, res) => {
-	console.log(req.body.name);
-})
 
 router.post('/signup', (req, res) => {
 	console.log("HIT USER SIGN UP ROUTE")

@@ -1,5 +1,14 @@
-* {
-  font-family: Roboto;
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Righteous', cursive;
+}
+
+p,
+span * {
+  font-family: 'Open Sans Condensed', sans-serif;
 }
 
 .App {
@@ -63,6 +72,7 @@ button {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .user-box {
@@ -80,6 +90,10 @@ button {
   padding: 0;
   width: 100%;
   justify-content: space-between;
+}
+
+.user-pic {
+  border-radius: 50%;
 }
 
 .results-box {
