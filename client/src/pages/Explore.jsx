@@ -8,6 +8,7 @@ const Explore = (props) => {
 	const [query, setQuery] = useState('');
 	const [message, setMessage] = useState('')
 	const [apiData, setApiData] = useState({});
+	const [isInCollection, setIsInCollection] = useState(false);
 
 	const handleInputChange = (e) => {
 		setQuery(e.target.value);
@@ -61,12 +62,20 @@ const Explore = (props) => {
 									<span>{item.year}</span> <br/>
 									<span>{item.label[0]}</span> <br/>
 									<span>{item.genre[0]}</span> <br/>
+									Tags: <br/>
+									{item.style.map((style) => {
+										return (
+											<span>{style}, </span>
+										)
+									})} <br />
 									<span>{`${item.community.have} users have this record.`}</span> <br/>
 									<span>{`${item.community.want} users want this record.`}</span>
   					  	</Card.Text>
    					 	</Accordion.Collapse> 
   					</Card.Body>
-  					  <Button onClick={() => addToCollection(item)}variant="dark" className='add-btn'>Add To Collection</Button>
+  					  <Button id={i} onClick={() => addToCollection(item, i)}variant="dark" className='add-btn'>
+								Add To Collection
+							</Button>
 							<Button onClick={() => addToWantList(item)}variant="dark" className='add-btn'>Add To Want List</Button>
 					</Card>
 				</Accordion>

@@ -2,9 +2,10 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import { Card, Button, Accordion } from 'react-bootstrap'
 
-
 const Collection = (props) => {
 	const [collection, setCollection] = useState([]);
+	const [accordionOpen, setAccordionOpen] = useState(false);
+
 
 	useEffect(() => {
 			axios.get(`/collection/${props.user._id}`).then( res => {
@@ -32,13 +33,12 @@ const Collection = (props) => {
   					<Card.Img variant="top" src={item.image} alt={item.title} />
   					<Card.Body>
   					  <Card.Title>{item.title}</Card.Title>
-							<Accordion.Toggle as={Button} variant="link" eventKey="0">
-        				More Information
-      				</Accordion.Toggle>    
+							<Accordion.Toggle as={Button} variant="beige" eventKey="0">
+        				{accordionOpen === false ? "More Information" : "Less Information" }
+      				</Accordion.Toggle>     
 							<Accordion.Collapse eventKey="0">
   					  	<Card.Text>
 									<span>{item.year}</span> <br/>
-									<span>{item.label}</span> <br/>
 									<span>{item.genre}</span> <br/>
   					  	</Card.Text>
    					 	</Accordion.Collapse> 

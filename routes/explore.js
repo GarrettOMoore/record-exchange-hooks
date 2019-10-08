@@ -17,4 +17,18 @@ router.post('/', (req, res) => {
 	})
 });
 
+router.post('/artist', (req, res) => {
+	var id = req.body.id;
+	var url = 'https://api.discogs.com/database/artists/?q='+ encodeURI(id) + '&type=master&key=' + 'iTRElvXmFbRQpLPRNyHY' + '&secret=' + 'TQWdIVlQOVjgQLmMIBSxzvdXsyaPEaEP'
+	axios.get(url).then((result) => {
+		res.json({
+			data: result.data
+		})
+	}).catch((error) => {
+		res.json({
+			error: error
+		})
+	})
+});
+
 module.exports = router;

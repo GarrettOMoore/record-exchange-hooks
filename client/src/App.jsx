@@ -8,7 +8,7 @@ import SignUp from './pages/SignUp';
 import Community from './pages/Community'
 import Explore from './pages/Explore'
 import Collection from './pages/Collection'
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 
 
 function App() {
@@ -77,14 +77,12 @@ function App() {
     checkForLocalToken();
   }, [])
 
-  let display;
-
+  let userDisplay = user && user.name ? <p>Hello {user.name}. Not you? <a href="/logout" onClick={logout}>Log Out</a></p> : "Please sign in"
   return (
     <div className="App">
       <Router>
         <Header logout={logout} user={user} />
-        {/* <button onClick={handleClick}>TEST</button>
-        {lockedResult} */}
+        {userDisplay}
         <Route exact path ='/' render={()=><Landing />}/>
         <Route exact path ='/signup' render={()=><SignUp liftToken={liftTokenToState} />}/>
         <Route exact path ='/login' render={()=><Login liftToken={liftTokenToState}/>}/>
