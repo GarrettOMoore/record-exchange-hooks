@@ -3,7 +3,6 @@ const router = express.Router();
 const Collection = require("../models/collection");
 
 router.get("/:id", (req, res) => {
-  console.log("IN GET ALLLLL");
   Collection.find({ user_id: req.params.id }, (err, items) => {
     if (!err) {
       res.send(items);
@@ -44,18 +43,9 @@ router.post("/", (req, res) => {
 
 router.post("/trade", (req, res) => {
   console.log(req.body.id);
-  // Collection.findByIdAndUpdate(
-  //   req.body.id,
-  //   {
-  //     $set: {
-  //       isTrade: true
-  //     }
-  //   },
-  //   { new: true },
-  //   (err, album) => {
-  //     if (err) console.log("ERROR: ====>", err);
-  //   }
-  // ).catch(err => console.log(err));
+  Collection.updateOne({ _id: req.body.id }, { isTrade: true }).catch(err =>
+    console.log(err)
+  );
 });
 
 router.get("/delete/:id", (req, res) => {
