@@ -5,18 +5,6 @@ import axios from "axios";
 
 const ProfileModal = props => {
   const [showProfileModal, setShowProfileModal] = useState(false);
-  const [favoriteArtists, setFavoriteArtists] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get(`/explore/favorites`)
-      .then(faves => {
-        setFavoriteArtists(faves);
-      })
-      .catch(err => {
-        console.log("FUUUUCK: ", err);
-      });
-  }, []);
 
   const handleShowProfile = () => {
     setShowProfileModal(true);
@@ -26,15 +14,11 @@ const ProfileModal = props => {
     setShowProfileModal(false);
   };
 
-  let favesDisplay;
+  let showFavesList;
 
-  if (favoriteArtists.length) {
-    favesDisplay = favoriteArtists.map(artist => {
-      return (
-        <>
-          <li>{artist}</li>
-        </>
-      );
+  if (props.faves.length) {
+    showFavesList = props.faves.data.map(artist => {
+      return <li>{artist.replace("_", " ")}</li>;
     });
   }
 
@@ -46,17 +30,19 @@ const ProfileModal = props => {
       <Modal show={showProfileModal} onHide={handleCloseProfile}>
         <Modal.Header closeButton>
           <Modal.Title>
-            {props.user.name.first} {props.user.name.last}
+            <header>
+              {props.user.name.first} {props.user.name.last}
+            </header>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>{props.user.email}</p>
+          <p className="profile-headers">{props.user.email}</p>
           <img
             className="modal-pic"
             src={props.user.picture.large}
             alt={props.user.name.first}
           />
-          <p>
+          <main>
             None of that prepared him for the arena, the crowd, the tense hush,
             the towering puppets of light from a service hatch framed a heap of
             discarded fiber optics and the chassis of a junked console. They
@@ -74,12 +60,12 @@ const ProfileModal = props => {
             her fletcher, dialed the barrel over to single shot, and very
             carefully put a toxin dart through the center of a broken mirror
             bent and elongated as they fell.
-          </p>
-          <ul>{favesDisplay}</ul>
+          </main>
+          <ul>{showFavesList}</ul>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseProfile}>
-            Close
+            <footer>Close</footer>
           </Button>
         </Modal.Footer>
       </Modal>

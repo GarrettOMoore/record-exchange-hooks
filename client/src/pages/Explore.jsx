@@ -98,8 +98,8 @@ const Explore = props => {
   }
 
   return (
-    <div className="main">
-      <h3>Search By Artist or Album Title:</h3>
+    <main>
+      <header>Search By Artist or Album Title:</header>
       <div className="query-input">
         <input
           onChange={handleInputChange}
@@ -109,7 +109,7 @@ const Explore = props => {
         <button onClick={handleQuerySubmit}>Go</button>
       </div>
       <div className="show-results">{discogsData}</div>
-    </div>
+    </main>
   );
 };
 

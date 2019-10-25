@@ -50,18 +50,12 @@ router.post("/artist", (req, res) => {
 });
 
 router.get("/favorites", (req, res) => {
-  let url = `http://metallizer.dk/api/json/0`;
+  let url = `http://names.drycodes.com/10?format=json`;
   axios.get(url).then(results => {
-    console.log(results);
-    res
-      .send({
-        faves: results
-      })
-      .catch(err => {
-        res.json({
-          error: err
-        });
-      });
+    console.log(results.data);
+    res.send(results.data).catch(err => {
+      res.send(err);
+    });
   });
 });
 

@@ -74,11 +74,11 @@ const Collection = props => {
   });
 
   return (
-    <div className="main">
+    <main>
       <Trade />
-      <h1>{`${props.user.name}'s Collection:`}</h1>
-      <div className="show-results">{showCollection}</div>
-    </div>
+      <header>{`${props.user.name}'s Collection:`}</header>
+      <main className="show-results">{showCollection}</main>
+    </main>
   );
 };
 
