@@ -1,6 +1,6 @@
 ![Record Exchange Logo](https://i.imgur.com/XXLBRAV.png)
 # Version 2!
-## ©️GarrettMoore using data from ©️Discogs
+#### Built by Garrett Moore using data from Discogs
 
 ---
 
