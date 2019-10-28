@@ -25,18 +25,18 @@ const Trade = props => {
                 </Accordion.Collapse>
               </Card.Body>
               <Button
-                onClick={() => props.addToTrade(item._id)}
+                onClick={() => props.removeFromTrade(item._id)}
                 variant="dark"
                 className="delete-btn"
               >
-                Add To Trade
+                I don't want to trade this anymore!
               </Button>
               <Button
                 onClick={() => props.deleteAlbum(item._id)}
                 variant="dark"
                 className="delete-btn"
               >
-                Remove From Collection
+                Already Traded?
               </Button>
             </Card>
           </Accordion>
@@ -46,10 +46,10 @@ const Trade = props => {
   });
 
   return (
-    <div>
+    <main>
       <header>{`${props.user.name}'s Trades:`}</header>
-      <span>{showTrades}</span>
-    </div>
+      <main className="show-results">{showTrades}</main>
+    </main>
   );
 };
 

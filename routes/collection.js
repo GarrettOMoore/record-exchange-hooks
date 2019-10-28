@@ -48,6 +48,13 @@ router.post("/trade", (req, res) => {
   );
 });
 
+router.post("/trade/remove", (req, res) => {
+  console.log(req.body.id);
+  Collection.updateOne({ _id: req.body.id }, { isTrade: false }).catch(err =>
+    console.log(err)
+  );
+});
+
 router.get("/delete/:id", (req, res) => {
   Collection.deleteOne({ _id: req.params.id }, err => {
     console.log(err);

@@ -10,7 +10,7 @@ const Collection = props => {
 
   useEffect(() => {
     fetchCollection();
-  }, [props.user]);
+  }, [props.user, collection]);
 
   const fetchCollection = () => {
     axios.get(`/collection/${props.user._id}`).then(res => {
@@ -39,6 +39,17 @@ const Collection = props => {
       .catch(err => console.log(err));
   };
 
+  const removeFromTrade = id => {
+    axios
+      .post("/collection/trade/remove", {
+        id: id
+      })
+      .then(res => {
+        fetchCollection();
+      })
+      .catch(err => console.log(err));
+  };
+
   return (
     <main>
       <Tabs
@@ -55,7 +66,12 @@ const Collection = props => {
           />
         </Tab>
         <Tab eventKey="trade" title="Trade">
-          <Trade collection={collection} user={props.user} />
+          <Trade
+            collection={collection}
+            removeFromTrade={removeFromTrade}
+            deleteAlbum={deleteAlbum}
+            user={props.user}
+          />
         </Tab>
       </Tabs>
     </main>

@@ -43,10 +43,10 @@ const UserCollection = props => {
     );
   });
   return (
-    <>
+    <main>
       <header>{`${props.user.name}'s Collection:`}</header>
       <main className="show-results">{showCollection}</main>
-    </>
+    </main>
   );
 };
 
